@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="clear_stroke">4</dimen>
+    <dimen name="margin">10px</dimen>
+    <dimen name="font_large">36dp</dimen>
+
+</resources>
