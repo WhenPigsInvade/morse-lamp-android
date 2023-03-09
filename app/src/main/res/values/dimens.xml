@@ -3,5 +3,6 @@
     <dimen name="clear_stroke">4</dimen>
     <dimen name="margin">10px</dimen>
     <dimen name="font_large">36dp</dimen>
+    <dimen name="tree_offset">512px</dimen>
 
 </resources>
