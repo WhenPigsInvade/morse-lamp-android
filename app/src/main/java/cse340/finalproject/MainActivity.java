@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         mToggle = new ActionBarDrawerToggle(
                 this, mLayout, R.string.nav_open, R.string.nav_close);
 
-        mNavigationView = findViewById(R.id.navigation_main);
+        mNavigationView = findViewById(R.id.navigation);
         mNavigationView.setNavigationItemSelectedListener(this);
 
         mLayout.addDrawerListener(mToggle);
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity
         Intent intent;
         switch (item.getItemId()) {
             case R.id.morse_tree:
-                intent = new Intent(MainActivity.this, TreeActivity.class);
+                intent = new Intent(this, TreeActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.about_me:
-                intent = new Intent(MainActivity.this, AboutActivity.class);
+                intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 break;
 

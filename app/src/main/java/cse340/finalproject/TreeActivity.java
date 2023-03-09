@@ -34,7 +34,7 @@ public class TreeActivity extends AppCompatActivity
         mToggle = new ActionBarDrawerToggle(
                 this, mLayout, R.string.nav_open, R.string.nav_close);
 
-        mNavigationView = findViewById(R.id.navigation_tree);
+        mNavigationView = findViewById(R.id.navigation);
         mNavigationView.setNavigationItemSelectedListener(this);
 
         mLayout.addDrawerListener(mToggle);
