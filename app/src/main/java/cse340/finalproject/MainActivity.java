@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity
         // TODO: Set onClickListener() for the FLASH! button
     }
 
+    // Reminder to add activity to android manifest
+    // Source: https://stackoverflow.com/questions/24853942/android-unable-to-find-explicit-activity-class
+
     // TODO: Change activity intent when navigation drawer buttons are clicked
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
