@@ -1,6 +1,8 @@
 package cse340.finalproject;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends DrawerActivity{
 
@@ -10,6 +12,13 @@ public class MainActivity extends DrawerActivity{
         super.onCreate(savedInstanceState, R.id.activity_main);
 
         // TODO: Set onClickListener() for the FLASH! button
+        Button flash = findViewById(R.id.flash);
+        flash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     // Reminder to add activity to android manifest

@@ -77,6 +77,7 @@ public abstract class DrawerActivity extends AppCompatActivity
         return true;
     }
 
+    // Creates the menu button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if(mToggle.onOptionsItemSelected(item)) return true;
