@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home"
+        android:id="@+id/menu_item_main"
         android:orderInCategory="100"
         android:title="@string/home"
         app:showAsAction="never" />
     <item
-        android:id="@+id/morse_tree"
+        android:id="@+id/menu_item_tree"
         android:orderInCategory="100"
         android:title="@string/morse_tree"
         app:showAsAction="never" />
     <item
-        android:id="@+id/about_me"
+        android:id="@+id/menu_item_about"
         android:orderInCategory="100"
         android:title="@string/about"
         app:showAsAction="never" />

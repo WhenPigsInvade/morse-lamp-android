@@ -2,12 +2,10 @@ package cse340.finalproject;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends DrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        super.onCreate(savedInstanceState, R.id.activity_about);
     }
 }
