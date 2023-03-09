@@ -45,13 +45,21 @@ public class MainActivity extends AppCompatActivity
     // TODO: Change activity intent when navigation drawer buttons are clicked
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
-        Log.i("TAG", item.getItemId()+"");
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.morse_tree:
-                Intent intent = new Intent(MainActivity.this, TreeActivity.class);
+                intent = new Intent(MainActivity.this, TreeActivity.class);
                 startActivity(intent);
                 break;
 
+            case R.id.about_me:
+                intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                Log.i("TAG", "Unknown menu item");
+                break;
         }
         mLayout.closeDrawer(GravityCompat.START);
         return true;

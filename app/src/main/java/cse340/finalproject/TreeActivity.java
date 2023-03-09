@@ -9,16 +9,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
-public class TreeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TreeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout mLayout;
     ActionBarDrawerToggle mToggle;
+    NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class TreeActivity extends AppCompatActivity implements NavigationView.On
         mToggle = new ActionBarDrawerToggle(
                 this, mLayout, R.string.nav_open, R.string.nav_close);
 
+        mNavigationView = findViewById(R.id.navigation_tree);
+        mNavigationView.setNavigationItemSelectedListener(this);
+
         mLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
@@ -42,13 +48,31 @@ public class TreeActivity extends AppCompatActivity implements NavigationView.On
     // TODO: Change activity intent when navigation drawer buttons are clicked
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
+        Intent intent;
         switch (item.getItemId()) {
-            case R.id.main:
-                Intent intent = new Intent(TreeActivity.this, MainActivity.class);
+            case R.id.home:
+                intent = new Intent(TreeActivity.this, MainActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.about_me:
+                intent = new Intent(TreeActivity.this, AboutActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                Log.i("TAG", "Unknown menu item");
+                break;
 
         }
         mLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if(mToggle.onOptionsItemSelected(item)) return true;
+
+        return super.onOptionsItemSelected(item);
     }
 }

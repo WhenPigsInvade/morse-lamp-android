@@ -8,12 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_tree"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/menu_items" />
+
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -33,6 +28,12 @@
 
     </HorizontalScrollView>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_tree"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/menu_items" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
