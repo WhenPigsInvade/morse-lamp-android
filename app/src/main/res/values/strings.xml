@@ -11,4 +11,5 @@
     <string name="message">Enter message</string>
     <string name="sos">SOS</string>
     <string name="brightness">Brightness</string>
+    <string name="no_flashlight">Flashlight not available</string>
 </resources>
