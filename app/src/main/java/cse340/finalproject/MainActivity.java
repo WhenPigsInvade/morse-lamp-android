@@ -112,7 +112,7 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
             mTiming.put(specialLetter[i], sequence);
         }
 
-        // TODO: Set onClickListener() for the FLASH! button
+        // Set onClickListener() for the FLASH! button
         Button flash = findViewById(R.id.flash);
         flash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,12 +261,16 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
         super.onResume();
         mSensorManager.registerListener(this,
                 mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), DELAY);
+
+        //TODO: Set the delay and textbox back to its previous state
     }
 
     @Override
     protected void onPause(){
         super.onPause();
         mSensorManager.unregisterListener(this);
+
+        //TODO: Save the delay and textbox content
     }
 
     @Override

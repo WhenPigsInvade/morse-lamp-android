@@ -43,7 +43,7 @@ public abstract class DrawerActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    // TODO: Change activity intent when navigation drawer buttons are clicked
+    // Change activity intent when navigation drawer buttons are clicked
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item){
         Intent intent;
