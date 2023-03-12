@@ -13,6 +13,7 @@ import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
     private Queue<Integer> mQueue;
     private SensorManager mSensorManager;
     private float mBrightness;
+    private HandlerThread mHandlerThread;
     public static int DELAY;
 
     @Override
@@ -45,7 +47,12 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState, R.id.activity_main);
 
-        mHandler = new Handler(Looper.getMainLooper());
+        // Magic threading code
+        // Source: https://stackoverflow.com/a/47670397
+        mHandlerThread = new HandlerThread("handler");
+        mHandlerThread.start();
+        mHandler = new Handler(mHandlerThread.getLooper());
+
         mQueue = new ArrayDeque<>();
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorManager.getSensorList(Sensor.TYPE_ALL);
@@ -55,7 +62,7 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
 
         // Set up delay box
         // Force numeric value in box
-        // Source: https://stackoverflow.com/a/42539028
+        // Source: https://stackoverflow.com/questions/47670169/which-thread-does-runnable-run-on
         EditText delayBox = findViewById(R.id.delay_box);
         delayBox.setTransformationMethod(null); // Prevents our input from being scrambled
         delayBox.setText(DELAY+"");
@@ -117,19 +124,8 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
         flash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Gets permission to use camera
-                // https://www.tutorialspoint.com/how-to-turn-on-flash-light-programmatically-in-android
-                Log.i("TAG", "FLash clicked");
-                if(ContextCompat.checkSelfPermission(
-                        MainActivity.this, Manifest.permission.CAMERA)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    Log.i("TAG", "Camera flash perms requested");
-                    // Permission is not granted
-                    String[] perm = {Manifest.permission.CAMERA};
-                    int camRequestCode = 100;
-                    ActivityCompat.requestPermissions(
-                            MainActivity.this, perm, camRequestCode);
-                }
+                // Clear whatever is left in the queue (ie if we didn't let it finish flashing)
+                mQueue.clear();
 
                 // If phone has no camera
                 // Source: https://www.tutorialspoint.com/how-to-turn-on-flash-light-programmatically-in-android
@@ -140,10 +136,12 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
                 }
 
                 // Sends warning if environment is too bright
-                int brightnessThreshold = 15000; // In lux
+                int brightnessThreshold = 120; // In lux
                 if(mBrightness > brightnessThreshold) {
                     Toast toast = Toast.makeText(MainActivity.this,
-                            R.string.brightness_warning, Toast.LENGTH_SHORT);
+                            R.string.brightness_warning,
+                            Toast.LENGTH_SHORT);
+                    toast.show();
                 }
 
                 // Stop flashlight if it is still running
@@ -222,6 +220,7 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
                 if(time > 0){
                     try {
                         manager.setTorchMode(camID, true);   //Turn ON
+
                         Thread.sleep(time * DELAY);
                         manager.setTorchMode(camID, false);
                     } catch (CameraAccessException | InterruptedException e) {
@@ -256,6 +255,9 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
 
     }
 
+    // Difference between onResume() and onRestoreInstanceState() and how to use the latter
+    // Source: https://en.proft.me/2016/10/19/how-saverestore-activitys-and-fragments-state/
+
     @Override
     protected void onResume(){
         super.onResume();
@@ -271,6 +273,20 @@ public class MainActivity extends DrawerActivity implements SensorEventListener 
         mSensorManager.unregisterListener(this);
 
         //TODO: Save the delay and textbox content
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("textbox",
+                ((EditText)findViewById(R.id.textbox)).getText().toString());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        ((EditText)findViewById(R.id.textbox)).setText(savedInstanceState.getString(
+                "textbox", ""));
     }
 
     @Override
