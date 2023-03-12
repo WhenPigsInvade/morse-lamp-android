@@ -69,8 +69,19 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/brightness"
             android:text="@string/brightness"
+            android:layout_margin="@dimen/double_margin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <EditText
+            android:id="@+id/delay_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/delay"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@id/brightness"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:inputType="numberPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

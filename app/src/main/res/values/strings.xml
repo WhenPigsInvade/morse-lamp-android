@@ -10,6 +10,17 @@
     <string name="repeat">Repeat morse message</string>
     <string name="message">Enter message</string>
     <string name="sos">SOS</string>
-    <string name="brightness">Brightness</string>
+    <string name="brightness">Brightness: %.0f</string>
     <string name="no_flashlight">Flashlight not available</string>
+    <string name="brightness_warning">Environment may be too bright for light to be seen</string>\
+    <string name="delay">delay (ms)</string>
+    <string name="premium">Please upgrade to the premium
+        version of this app to access this feature.</string>
+    <string name="about_me">I\'m actually really cool</string>
+    <string name="github">Github</string>
+    <string name="donate">Buy me a coffee</string>
+
+
+    <string name="github_link">https://github.com/WhenPigsInvade</string>
+    <string name="paypal_link">https://www.paypal.com/donate/?business=UFTWHHR9RJD7J</string>
 </resources>

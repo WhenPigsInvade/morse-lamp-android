@@ -15,11 +15,41 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/about_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="DEEEZ NUTZ"/>
+            android:layout_margin="@dimen/double_margin"
+            android:textSize="@dimen/font_large"
+            android:text="@string/about"/>
+
+        <TextView
+            android:id="@+id/about_me_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/about_me"
+            android:text="@string/about_me"/>
+
+        <Button
+            android:id="@+id/github"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@id/about_me_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@string/github"/>
+
+        <Button
+            android:id="@+id/donation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/github"
+            android:text="@string/donate"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
